@@ -25,29 +25,29 @@ Set-up your Docker environment on your workstation; either create or resume an e
 
 ~~~sh
 # Create the Docker host in VirtualBox
-docker-machine create --driver virtualbox digital-dockerhost
+docker-machine create --driver virtualbox myorg-myproject-dockerhost
 
 # ... or resume
-docker-machine start digital-dockerhost
+docker-machine start myorg-myproject-dockerhost
 
 # Set your Docker environment variables
-eval $(docker-machine env digital-dockerhost)
+eval $(docker-machine env myorg-myproject-dockerhost)
 ~~~
 
 # Set-up overall Docker cargo modules
 The basis of a cargo module is quite simple:
 
 ~~~
-digital-cargo/
+myproject-cargo/
 ├── ReadMe.md
-├── digital-helloworld-service-docker
+├── myproject-helloworld-service-docker
 │   ├── pom.xml
 │   └── src
 │       └── main
 │           └── resources
 │               └── docker
 │                   └── Dockerfile
-├── digital-parent
+├── myproject-parent
 │   └── pom.xml
 └── pom.xml
 ~~~                

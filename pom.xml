@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     
-    <groupId>com.igtb.digital</groupId>
-    <artifactId>digital</artifactId>
+    <groupId>com.myorg.myproject</groupId>
+    <artifactId>maven-docker-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 	
 	<modelVersion>4.0.0</modelVersion>
-    <name>Digital</name>
+    <name>Maven-Docker Demo</name>
 
     <prerequisites>
         <maven>3.2.1</maven>
@@ -31,8 +31,8 @@
             </activation>
 
             <modules>
-                <module>digital-backend</module>
-				<module>digital-cargo</module>
+                <module>myproject-backend</module>
+				<module>myproject-cargo</module>
             </modules>
         </profile>
 
@@ -43,7 +43,7 @@
             </activation>
 
             <modules>
-                <module>digital-cargo</module>
+                <module>myproject-cargo</module>
             </modules>
         </profile>
 		
@@ -54,7 +54,7 @@
             </activation>
 
             <modules>
-            	<module>digital-backend</module>
+            	<module>myproject-backend</module>
             </modules>
         </profile>
 		

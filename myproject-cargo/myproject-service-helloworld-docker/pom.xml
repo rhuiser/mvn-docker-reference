@@ -2,26 +2,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-     
-	<parent>
-		<artifactId>digital-parent</artifactId>
-		<groupId>com.igtb.digital.cargo</groupId>
-		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../digital-parent/pom.xml</relativePath>
-	</parent>
+
+     <parent>
+         <artifactId>myproject-parent</artifactId>
+         <groupId>com.myorg.myproject.cargo</groupId>
+         <version>1.0.0-SNAPSHOT</version>
+         <relativePath>../myproject-parent/pom.xml</relativePath>
+     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>engage-configserver-docker</artifactId>
-    <name>Digital :: Cargo : Middleware : Config Server</name>
-
+   
+    <artifactId>digital-service-helloworld-docker</artifactId>
+    <name>MyProject :: Cargo : Service : HelloWorld API</name>
+  
     <properties>
 		<!-- Docker image tag defaults to project version -->
 		<image.version>${project.version}</image.version>
 		
-		<!-- Set the Spring Config Server artefact properties here --> 
-        <service.groupId>org.springframework.cloud</service.groupId>
-        <service.artefactId>spring-cloud-config-server</service.artefactId>
-        <service.version>${springcloudconfigserver.version}</service.version>
+		<!-- Set the Spring boot service artefact properties here --> 
+        <service.groupId>com.myorg.myproject.backend.demo</service.groupId>
+        <service.artefactId>hello-world-api</service.artefactId>
+        <service.version>0.1.0</service.version>
     </properties>
 
     <dependencies>
@@ -41,15 +41,13 @@
                 <targetPath>${project.build.directory}</targetPath>
             </resource>
         </resources>
-
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>copy</id>
-                        <phase>compile</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>copy</goal>
                         </goals>
@@ -58,21 +56,33 @@
                                 <artifactItem>
                                     <groupId>${service.groupId}</groupId>
                                     <artifactId>${service.artefactId}</artifactId>
-                                    <classifier>exec</classifier>
+                                    <type>jar</type>
                                     <outputDirectory>${project.build.directory}/docker</outputDirectory>
-									<destFileName>${service.artefactId}-${service.version}.jar</destFileName>
+                                    <destFileName>${service.artefactId}-${service.version}.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <configuration>
-                    <imageName>${docker.repo}/igtb/${project.artifactId}:${image.version}</imageName>
+			    <executions>
+					<execution>
+				      <id>tag-image</id>
+				      <phase>package</phase>
+				      <goals>
+				        <goal>tag</goal>
+				      </goals>
+				      <configuration>
+				        <image>${docker.repo}/myorg/${project.artifactId}:${image.version}</image>
+				        <newName>igtb/${project.artifactId}:${image.version}</newName>
+				      </configuration>
+				    </execution>
+                </executions>
+				<configuration>
+                    <imageName>${docker.repo}/myorg/${project.artifactId}:${image.version}</imageName>
 			        <imageTags>
 			           <imageTag>${image.version}</imageTag>
 			           <imageTag>latest</imageTag>
@@ -81,5 +91,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

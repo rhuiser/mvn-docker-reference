@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <artifactId>digital-parent</artifactId>
-        <groupId>com.igtb.digital.cargo</groupId>
+        <artifactId>myproject-parent</artifactId>
+        <groupId>com.myorg.myproject.cargo</groupId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../digital-parent/pom.xml</relativePath>
+        <relativePath>../myproject-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     
-    <artifactId>digital-base-java</artifactId>
-    <name>Digital :: Cargo : Base : Oracle JDK 8</name>
+    <artifactId>myproject-base-java</artifactId>
+    <name>Myproject :: Cargo : Base : Oracle JDK 8</name>
 	
     <properties>
 		<jdk-image.version>8u111</jdk-image.version>
@@ -36,7 +36,7 @@
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <configuration>
-                    <imageName>${docker.repo}/igtb/${project.artifactId}:${image.version}</imageName>
+                    <imageName>${docker.repo}/myorg/${project.artifactId}:${image.version}</imageName>
 			        <imageTags>
 			           <imageTag>${image.version}</imageTag>
 			        </imageTags>
