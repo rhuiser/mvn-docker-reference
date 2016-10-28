@@ -62,21 +62,21 @@
 
     <repositories>
         <!-- <repository>
-            <id>iGTB Artifact Repository</id>
-            <url>https://artifacts.igtb.com/repo</url>
+            <id>MyOrg Artifact Repository</id>
+            <url>https://artifacts.myorg.com/repo</url>
         </repository>
         <repository>
-            <id>iGTB Artifact Snapshots Repository</id>
-            <name>artifacts.igtb.com-snapshots</name>
-            <url>https://artifacts.igtb.com/digital-development-snapshots</url>
+            <id>MyOrg Artifact Snapshots Repository</id>
+            <name>artifacts.myorg.com-snapshots</name>
+            <url>https://artifacts.myorg.com/myproject-development-snapshots</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
         </repository>
         <repository>
-            <id>iGTB Artifact Releases Repository</id>
-            <name>artifacts.igtb.com-releases</name>
-            <url>https://artifacts.igtb.com/digital-development-internal-releases</url>
+            <id>MyOrg Artifact Releases Repository</id>
+            <name>artifacts.myorg.com-releases</name>
+            <url>https://artifacts.myorg.com/myproject-development-internal-releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>

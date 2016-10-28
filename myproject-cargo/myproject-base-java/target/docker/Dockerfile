@@ -29,9 +29,9 @@ RUN cd /tmp && \
       unzip -oj -d $JAVA_HOME/jre/lib/security jce_policy-8.zip \*/\*.jar && \
       rm jce_policy-8.zip
 
-RUN mkdir -p /home/digital && \
-    groupadd -r digital -g 433 && \
-    useradd -u 431 -r -g digital -d /home/digital -s /sbin/nologin -c "Docker image user" digital && \
-    chown -R digital:digital /home/digital
+RUN mkdir -p /home/jrunner && \
+    groupadd -r jrunner -g 433 && \
+    useradd -u 431 -r -g jrunner -d /home/jrunner -s /sbin/nologin -c "Java Docker image user" jrunner && \
+    chown -R jrunner:jrunner /home/jrunner
 
-USER digital
+USER jrunner

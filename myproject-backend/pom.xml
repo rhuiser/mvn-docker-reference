@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     
-    <groupId>com.igtb.digital.backend</groupId>
-    <artifactId>digital</artifactId>
+    <groupId>com.myorg.myproject.backend</groupId>
+    <artifactId>backend-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 	
 	<modelVersion>4.0.0</modelVersion>
-    <name>Digital :: Backend</name>
+    <name>MyProject :: Backend</name>
 
     <prerequisites>
         <maven>3.2.1</maven>
@@ -59,21 +59,21 @@
 
     <repositories>
         <!-- <repository>
-            <id>iGTB Artifact Repository</id>
-            <url>https://artifacts.igtb.com/repo</url>
+            <id>MyOrg Artifact Repository</id>
+            <url>https://artifacts.myorg.com/repo</url>
         </repository>
         <repository>
-            <id>iGTB Artifact Snapshots Repository</id>
-            <name>artifacts.igtb.com-snapshots</name>
-            <url>https://artifacts.igtb.com/digital-development-snapshots</url>
+            <id>MyOrg Artifact Snapshots Repository</id>
+            <name>artifacts.myorg.com-snapshots</name>
+            <url>https://artifacts.myorg.com/myproject-development-snapshots</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
         </repository>
         <repository>
-            <id>iGTB Artifact Releases Repository</id>
-            <name>artifacts.igtb.com-releases</name>
-            <url>https://artifacts.igtb.com/digital-development-internal-releases</url>
+            <id>MyOrg Artifact Releases Repository</id>
+            <name>artifacts.myorg.com-releases</name>
+            <url>https://artifacts.myorg.com/myproject-development-internal-releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
