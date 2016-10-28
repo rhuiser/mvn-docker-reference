@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <groupId>com.igtb.digital.cargo</groupId>
+    <artifactId>digital</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+	
+	<modelVersion>4.0.0</modelVersion>
+    <name>Digital :: Cargo</name>
+
+    <prerequisites>
+        <maven>3.2.1</maven>
+    </prerequisites>
+
+    <properties>
+        <!-- unify the encoding for all the modules -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <jdk.version>1.8</jdk.version>
+        <compiler.fork>false</compiler.fork>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <modules>
+                <module>digital-base-java</module>
+                <module>digital-middleware-configserver-docker</module>
+				<module>digital-service-helloworld-docker</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>base</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
+            <modules>
+                <module>digital-base-java</module>
+            </modules>
+        </profile>
+		
+        <profile>
+            <id>middleware</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
+            <modules>
+                <module>digital-middleware-spring</module>
+            </modules>
+        </profile>
+		
+        <profile>
+            <id>service</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
+            <modules>
+                <module>digital-service-helloworld-docker</module>
+            </modules>
+        </profile>
+		
+		
+    </profiles>
+
+    <repositories>
+        <!-- <repository>
+            <id>iGTB Artifact Repository</id>
+            <url>https://artifacts.igtb.com/repo</url>
+        </repository>
+        <repository>
+            <id>iGTB Artifact Snapshots Repository</id>
+            <name>artifacts.igtb.com-snapshots</name>
+            <url>https://artifacts.igtb.com/digital-development-snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>iGTB Artifact Releases Repository</id>
+            <name>artifacts.igtb.com-releases</name>
+            <url>https://artifacts.igtb.com/digital-development-internal-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository> -->
+    </repositories>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <pluginManagement>
+            <plugins>
+                <!-- This plugin is to be used for running dockers containers -->
+                <plugin>
+                    <groupId>org.jolokia</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>0.10.5</version>
+                </plugin>
+                <!-- This plugin is to be used for building docker images -->
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>0.4.13</version>
+                    <executions>
+                        <execution>
+                            <id>build-image</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <dockerDirectory>${project.build.directory}/docker</dockerDirectory>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.10</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

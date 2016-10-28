@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <groupId>com.igtb.digital</groupId>
+    <artifactId>digital</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+	
+	<modelVersion>4.0.0</modelVersion>
+    <name>Digital</name>
+
+    <prerequisites>
+        <maven>3.2.1</maven>
+    </prerequisites>
+
+    <properties>
+        <!-- unify the encoding for all the modules -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <jdk.version>1.8</jdk.version>
+        <compiler.fork>false</compiler.fork>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <modules>
+                <module>digital-backend</module>
+				<module>digital-cargo</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>cargo</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
+            <modules>
+                <module>digital-cargo</module>
+            </modules>
+        </profile>
+		
+        <profile>
+            <id>backend</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
+            <modules>
+            	<module>digital-backend</module>
+            </modules>
+        </profile>
+		
+    </profiles>
+
+    <repositories>
+        <!-- <repository>
+            <id>iGTB Artifact Repository</id>
+            <url>https://artifacts.igtb.com/repo</url>
+        </repository>
+        <repository>
+            <id>iGTB Artifact Snapshots Repository</id>
+            <name>artifacts.igtb.com-snapshots</name>
+            <url>https://artifacts.igtb.com/digital-development-snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>iGTB Artifact Releases Repository</id>
+            <name>artifacts.igtb.com-releases</name>
+            <url>https://artifacts.igtb.com/digital-development-internal-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository> -->
+    </repositories>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.10</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

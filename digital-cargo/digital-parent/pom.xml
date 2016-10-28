@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>digital</artifactId>
+        <groupId>com.igtb.digital.cargo</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <artifactId>digital-parent</artifactId>
+
+    <properties>
+		<!-- Docker repository here -->
+		<docker.repo>955414570717.dkr.ecr.eu-west-1.amazonaws.com</docker.repo>
+		
+		<!-- Java Docker image and version to use -->
+		<docker.java-base>igtb/digital-base-java:8u111-b14</docker.java-base>
+		
+		<!-- Commanon features and libs here -->
+        <features-maven-plugin.version>2.3.4</features-maven-plugin.version>
+        <springcloudconfigserver.version>1.0.4.RELEASE</springcloudconfigserver.version>
+        <mysql-connector.version>5.1.23</mysql-connector.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

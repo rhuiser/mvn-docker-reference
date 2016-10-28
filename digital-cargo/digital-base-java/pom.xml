@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>digital-parent</artifactId>
+        <groupId>com.igtb.digital.cargo</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../digital-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    
+    <artifactId>digital-base-java</artifactId>
+    <name>Digital :: Cargo : Base : Oracle JDK 8</name>
+	
+    <properties>
+		<jdk-image.version>8u111</jdk-image.version>
+		<jdk-image.build>b14</jdk-image.build>
+		
+        <!-- Docker image tag defaults to project version -->
+		<image.version>${jdk-image.version}-${jdk-image.build}</image.version>
+    </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <targetPath>${project.build.directory}</targetPath>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <imageName>${docker.repo}/igtb/${project.artifactId}:${image.version}</imageName>
+			        <imageTags>
+			           <imageTag>${image.version}</imageTag>
+			        </imageTags>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

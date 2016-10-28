@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>digital-parent</artifactId>
+        <groupId>com.igtb.digital.cargo</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../digital-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+   
+    <artifactId>digital-service-helloworld-docker</artifactId>
+    <name>Digital :: Cargo : Service : HelloWorld API</name>
+  
+    <properties>
+		<!-- Docker image tag defaults to project version -->
+		<image.version>${project.version}</image.version>
+		
+		<!-- Set the Spring boot service artefact properties here --> 
+        <service.groupId>com.igtb.digital.backend.demo</service.groupId>
+        <service.artefactId>hello-world-api</service.artefactId>
+        <service.version>0.1.0</service.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>${service.groupId}</groupId>
+            <artifactId>${service.artefactId}</artifactId>
+            <version>${service.version}</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <targetPath>${project.build.directory}</targetPath>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${service.groupId}</groupId>
+                                    <artifactId>${service.artefactId}</artifactId>
+                                    <type>jar</type>
+                                    <outputDirectory>${project.build.directory}/docker</outputDirectory>
+                                    <destFileName>${service.artefactId}-${service.version}.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <imageName>${docker.repo}/igtb/${project.artifactId}:${image.version}</imageName>
+			        <imageTags>
+			           <imageTag>${image.version}</imageTag>
+			           <imageTag>latest</imageTag>
+			        </imageTags>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
