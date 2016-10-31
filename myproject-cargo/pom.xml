@@ -32,8 +32,8 @@
 
             <modules>
                 <module>myproject-base-java</module>
-                <module>myproject-middleware-configserver-docker</module>
-				<module>myproject-service-helloworld-docker</module>
+                <module>myproject-middleware-config-server</module>
+				<module>myproject-service-helloworld-api</module>
             </modules>
         </profile>
 

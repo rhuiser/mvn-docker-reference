@@ -76,11 +76,37 @@ mvn clean install
 ~~~
 
 ## Run
-This step will instantiate a container of the created Hello World API Docker image and test it.
+This step will run the created images as Docker containers on your Dockerhost.
+
+First, we define a simple `docker-compose file` where we start the HelloWorld API and Config-Server Dockers. 
+
+~~~yaml
+helloworld-api:
+    image: myorg/myproject-service-helloworld-api
+    ports:
+        - "8500:8080"
+    links:
+        - config-server
+
+config-server:
+    image: 955414570717.dkr.ecr.eu-west-1.amazonaws.com/myorg/myproject-config-server:1.0.0-SNAPSHOT
+~~~
+
+* The HelloWorld API Docker is linked to the Config-Server, as a result, Config Server will start first.
+* A port-mapping has been assigned to HelloWorld API, as a result `port 8080` (listening on internal Docker network) will be exposed to the outside world via the Docker host external IP address using `port 8500`
 
 ~~~sh
+# Bring up the Docker(s)
+docker-compose --file myproject-cargo/docker-compose.yaml up -d
 
+# Verify if everything is OK
+docker-compose ps
+
+# Test the set-up
+curl http://$(docker-machine ip myorg-myproject-dockerhost):9938/
 ~~~
+
+Hello Word!
 
 ## Deploy
 Once you are happy, deploy the Docker container to the central repository so your fellow developers can use it.

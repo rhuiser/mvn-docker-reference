@@ -1,0 +1,9 @@
+helloworld-api:
+    image: myorg/myproject-service-helloworld-api
+    ports:
+        - "8500:8080"
+    links:
+        - config-server
+
+config-server:
+    image: 955414570717.dkr.ecr.eu-west-1.amazonaws.com/myorg/myproject-config-server:1.0.0-SNAPSHOT
