@@ -52,7 +52,7 @@ myproject-cargo/
 └── pom.xml
 ~~~                
 
-* **01-12: Cargo module** - *defines profiles, repositories and plugins* 
+* **01-12: Cargo module** - *defines profiles, repositories and plugins*
 * **10-11: Parent project** - *defines global variables and global dependencies for all cargo projects*
 * **03-09: A Cargo project** - *defines build resources, project dependencies and plugin configuration for Docker*
 
@@ -97,13 +97,14 @@ config-server:
 
 ~~~sh
 # Bring up the Docker(s)
-docker-compose --file myproject-cargo/docker-compose.yaml up -d
+cd myproject-cargo
+docker-compose up -d
 
 # Verify if everything is OK
 docker-compose ps
 
 # Test the set-up
-curl http://$(docker-machine ip myorg-myproject-dockerhost):9938/
+curl http://$(docker-machine ip myorg-myproject-dockerhost):8500/
 ~~~
 
 Hello Word!
